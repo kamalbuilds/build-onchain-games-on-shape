@@ -13,8 +13,10 @@ import './index.css'
 import { WagmiConfig, createConfig } from 'wagmi'
 import { RainbowKitProvider, connectorsForWallets, getDefaultWallets } from '@rainbow-me/rainbowkit'
 import { chains, publicClient, webSocketPublicClient } from './config/wallet.ts'
+import '@rainbow-me/rainbowkit/styles.css'
 
 const projectId = '7fc8602bd859749134adeca848bb82d5';
+
 const { wallets } = getDefaultWallets({
   projectId,
   appName: 'shape-game-dev',

@@ -14,6 +14,7 @@ import {
   OrbitControls,
   Outlines,
   Cylinder,
+  Cone
 } from "@react-three/drei";
 // import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 // import { PivotControls } from "./gamedev/pivotControls/index";
@@ -32,6 +33,8 @@ import ObjectControls from "./gamedev/ObjectControls";
 import LightControls from "./gamedev/LightControls";
 import TaskControls from "./gamedev/TaskControls";
 import LocationDisplay from "./gamedev/LocationDisplay";
+import { AchievementsDisplay } from './components/AchievementsDisplay'
+import { RewardsDisplay } from './components/RewardsDisplay'
 
 import "./gamedev/engine.css";
 
@@ -46,7 +49,7 @@ export default function App() {
         try {
           await window.ethereum.request({
             method: "wallet_addEthereumChain",
-            params: [networkMap.THETATESTNET],
+            params: [networkMap.SHAPETESTNET],
           });
         } catch (error) {
           console.error("Failed to setup the network:", error);
@@ -69,12 +72,19 @@ export default function App() {
 
 
 const networkMap = {
-  THETATESTNET: {
-    chainId: utils.hexValue(365), // '0xe2c'
-    chainName: "Shape Testnet",
+  SHAPETESTNET: {
+    chainId: utils.hexValue(11011), // we will change this to shape mainnet when needed
+    chainName: "Shape Sepolia",
     nativeCurrency: { name: "ETH", symbol: "ETH", decimals: 18 },
-    rpcUrls: ["https://eth-rpc-api-testnet.shapetoken.org/rpc"],
+    rpcUrls: ["https://sepolia.shape.network"],
     blockExplorerUrls: ["https://testnet-explorer.shapetoken.org/"],
+  },
+  SHAPEMAINNET: {
+    chainId: utils.hexValue(360), // we will change this to shape mainnet when needed
+    chainName: "Shape Mainnet",
+    nativeCurrency: { name: "ETH", symbol: "ETH", decimals: 18 },
+    rpcUrls: ["https://shape-mainnet.g.alchemy.com/public"],
+    blockExplorerUrls: ["https://explorer.shapetoken.org/"],
   },
 };
 
@@ -212,9 +222,11 @@ function Scene() {
       });
       setAccount(accounts[0]);
 
+      const chainId = networkMap.SHAPETESTNET.chainId;
+
       await ethereum.request({
         method: "wallet_switchEthereumChain",
-        params: [{ chainId: networkMap.THETATESTNET.chainId }],
+        params: [{ chainId: chainId }],
       });
 
       const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -355,7 +367,7 @@ function Scene() {
             confirmButtonText: "Open Game",
           }).then((result) => {
             if (result.isConfirmed) {
-              let absoluteURL = new URL("https://create-genai-shape-games.vercel.app/"); // take the user to the game page
+              let absoluteURL = new URL("https://build-onchain-games-on-shape.vercel.app/"); // take the user to the game page
               absoluteURL.searchParams.append(
                 "game",
                 gameContractAddress[gameContractAddress.length - 1]
@@ -633,6 +645,32 @@ function Scene() {
               <LocationDisplay />
               <LightControls />
               <TaskControls />
+              
+              <div className="accordion-item standard-fbutton">
+                <h2 className="accordion-header">
+                  <button
+                    className="accordion-button standard-background collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseAchievements"
+                    aria-expanded="false"
+                  >
+                    <span className="me-2 align-middle bi bi-trophy text-warning"></span>
+                    Achievements & Rewards
+                  </button>
+                </h2>
+                <div
+                  id="flush-collapseAchievements"
+                  className="accordion-collapse collapse"
+                  data-bs-parent="#accordionFlushExample"
+                >
+                  <div className="accordion-body">
+                    <AchievementsDisplay contractAddress={gameAddress} />
+                    <div className="divider">Rewards</div>
+                    <RewardsDisplay contractAddress={gameAddress} />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
