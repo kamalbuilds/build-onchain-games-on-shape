@@ -1,10 +1,10 @@
-# ShapeCraft: Build & Deploy Games on Shape Blockchain
+# ShapeGameCrafter: Build & Deploy Games on Shape Blockchain
 
 > Empowering developers to create, deploy, and monetize blockchain games with ease
 
 ## 🎮 Overview
 
-ShapeCraft is a comprehensive game development platform that enables developers to build and deploy blockchain games on the Shape Network. It combines the power of Web3 technology with intuitive game development tools to create immersive gaming experiences.
+ShapeGameCrafter is a comprehensive game development platform that enables developers to build and deploy blockchain games on the Shape Network. It combines the power of Web3 technology with intuitive game development tools to create immersive gaming experiences.
 
 ## 🎯 Problem Statement
 
@@ -17,7 +17,7 @@ Traditional game development platforms face several challenges:
 
 ## 💡 Solution
 
-ShapeCraft provides an end-to-end solution that addresses these challenges through:
+ShapeGameCrafter provides an end-to-end solution that addresses these challenges through:
 - Seamless blockchain integration
 - Built-in NFT support
 - Decentralized asset management
@@ -65,7 +65,7 @@ GF --> GR
 ### Game Developer Flow
 
 1. **Game Creation**
-   - Connect wallet to ShapeCraft platform
+   - Connect wallet to ShapeGameCrafter platform
    - Access the Game Engine interface
    - Create game scenes using the visual editor
    - Add 3D models, lights, and physics properties
@@ -195,9 +195,9 @@ GF --> GR
 - Player rewards
 - Community features
 
-## 🔗 ShapeCraft Integration
+## 🔗 ShapeGameCrafter Integration
 
-ShapeCraft leverages Shape Blockchain's unique features:
+ShapeGameCrafter leverages Shape Blockchain's unique features:
 - High-performance transactions
 - Low gas fees
 - Native NFT support
