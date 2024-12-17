@@ -1,6 +1,7 @@
-import { ConnectWallet } from "@thirdweb-dev/react";
+
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
+import { Navigation } from "./Navigation";
 
 export const Navbar = () => {
     return (
@@ -15,6 +16,9 @@ export const Navbar = () => {
                     <p>Minter</p>
                 </Link>
                 <Link href={"/shape-marketplace"}>
+                    <p>Explore</p>
+                </Link>
+                <Link href={"/marketplace"}>
                     <p>ShapeGame Marketplace</p>
                 </Link>
                 <Link href={"/character"}>
@@ -24,9 +28,7 @@ export const Navbar = () => {
                     <p>3D Onchain Game Creator</p>
                 </Link>
             </div>
-            <ConnectWallet
-                btnTitle="Sign In"
-            />
+            <Navigation /> 
         </div>
     )
 };

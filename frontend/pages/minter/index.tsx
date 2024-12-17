@@ -1,10 +1,9 @@
 import React, { useRef, useState } from 'react';
-import { MediaRenderer, useAddress } from "@thirdweb-dev/react";
 import styles from "../../styles/Home.module.css";
 import { NextPage } from "next";
-
+import Image from 'next/image';
 const Home: NextPage = () => {
-  const address = useAddress();
+  const address = "0x67E6FB17f0ff00C2fA8484C3A1a0A24FE9a817bf";
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [nftName, setNftName] = useState<string>("");
@@ -105,7 +104,7 @@ const Home: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      {!address ? (
+      
         <div className={styles.minterContainer}>
           <div className={styles.mintContainerSection}>
             <h1>NFT Media</h1>
@@ -137,10 +136,11 @@ const Home: NextPage = () => {
                 </div>
               ) : (
                 <div style={{ height: "100%" }}>
-                  <MediaRenderer
+                  <Image
                     src={imageUrl}
-                    height='100%'
-                    width='100%'
+                    height={100}
+                    width={100}
+                    alt='NFT Image'
                   />
                   <button 
                     onClick={reset}
@@ -192,11 +192,7 @@ const Home: NextPage = () => {
             <iframe src='https://sketchto3d38wnt6we12-52f9094ad25a199f.tec-s1.onthetaedgecloud.com' width="100%" height="800" />
           </div>
         </div>
-      ) : (
-        <div>
-          <h1>Sign in to mint an NFT</h1>
-        </div>
-      )}
+
     </div>
   );
 };
